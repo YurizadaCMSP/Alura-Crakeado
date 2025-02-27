@@ -1,0 +1,17 @@
+{
+  "name": "advanced-professional-page",
+  "version": "1.0.0",
+  "description": "A professional and advanced HTML page with modern design, animations, and responsiveness.",
+  "main": "index.html",
+  "scripts": {
+    "start": "open index.html"
+  },
+  "author": "YurizadaCMSP",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.5.2",
+    "animate.css": "^4.1.1",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
+  }
+}
