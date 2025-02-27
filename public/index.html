@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link rel="stylesheet" href="css/styles.css">
     <style>
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            border-radius: 5px;
+        }
         pre {
             background-color: #f3f3f3;
             padding: 15px;
@@ -22,17 +32,42 @@
         .emoji {
             font-size: 1.5em;
         }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header class="mt-5">
-            <h1 class="text-center animate__animated animate__fadeInDown"><i class="fas fa-robot"></i> Bem-vindo ao Aulra Crakeado</h1>
+            <h1 class="text-center animate__animated animate__fadeInDown">
+                <i class="fas fa-robot"></i> Bem-vindo ao Aulra Crakeado! 🚀
+            </h1>
         </header>
         <main class="mt-5">
             <section class="text-center">
-                <p class="animate__animated animate__fadeInUp"><i class="fas fa-info-circle"></i> Este é um script de automação para aulas e atividades da Alura. Ele simula comportamento humano, tornando o processo eficiente e confiável. 🚀</p>
-                <h2 class="animate__animated animate__fadeInUp"><i class="fas fa-code"></i> UserScript Personalizado</h2>
+                <p class="animate__animated animate__fadeInUp">
+                    <i class="fas fa-info-circle"></i> Este é um script de automação para aulas e atividades da Alura. Ele simula comportamento humano, tornando o processo eficiente e confiável. 🎓
+                </p>
+                <h2 class="animate__animated animate__fadeInUp">
+                    <i class="fas fa-code"></i> UserScript Personalizado
+                </h2>
                 <pre class="animate__animated animate__fadeInUp"><code>
 // ==UserScript==
 // @name         Aulra Crakeado
@@ -51,15 +86,63 @@
     console.log('Aulra Crakeado ativo! 🤖');
 })();
                 </code></pre>
+                <button id="feedbackButton" class="btn btn-info mt-3" data-toggle="modal" data-target="#feedbackModal">Deixe seu Feedback 💬</button>
             </section>
         </main>
+
+        <!-- Modal de Feedback -->
+        <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="feedbackModalLabel">Feedback</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="feedbackForm">
+                            <div class="form-group">
+                                <label for="feedbackText">Seu Feedback:</label>
+                                <textarea class="form-control" id="feedbackText" rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <footer class="text-center mt-5">
             <p>&copy; 2025 YurizadaCMSP. Todos os direitos reservados. <i class="fas fa-heart"></i></p>
         </footer>
+
+        <div class="notification" id="notification"></div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
+    <script>
+        document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita o envio do formulário
+
+            const feedbackText = document.getElementById('feedbackText').value;
+            showNotification('Obrigado pelo seu feedback! 😊');
+
+            // Limpa o formulário
+            document.getElementById('feedbackForm').reset();
+            $('#feedbackModal').modal('hide'); // Fecha o modal
+        });
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
